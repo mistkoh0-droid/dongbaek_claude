@@ -53,6 +53,7 @@ export default function LogoStory() {
         {/* 동백숲 사진: 처음에만 보이고 미색 바탕으로 사라짐 */}
         <div className="ls-photo absolute inset-0" aria-hidden>
           <Image
+            loading="eager"
             src="/images/scene-meditation.png"
             alt=""
             fill
@@ -76,21 +77,32 @@ export default function LogoStory() {
         {/* 요정과 로고를 같은 정사각형 안에 겹쳐 둡니다 */}
         <div className="relative z-10 aspect-square w-[min(94vw,calc(100svh-4rem),680px)]">
           <Image
+            loading="eager"
             src="/images/spirit-1.png"
             alt="손을 흔드는 동백요정"
             fill
             sizes="(max-width: 768px) 94vw, 680px"
             className={`ls-spirit ${box} object-contain`}
           />
-          <Image src={logo} alt="" fill sizes="(max-width: 768px) 94vw, 680px" className={`ls-bl ${box}`} aria-hidden />
-          <Image src={logo} alt="" fill sizes="(max-width: 768px) 94vw, 680px" className={`ls-flower ${box}`} aria-hidden />
-          <Image src={logo} alt="" fill sizes="(max-width: 768px) 94vw, 680px" className={`ls-m ${box}`} aria-hidden />
+          <Image src={logo} alt="" loading="eager" fill sizes="(max-width: 768px) 94vw, 680px" className={`ls-bl ${box}`} aria-hidden />
+          <Image src={logo} alt="" loading="eager" fill sizes="(max-width: 768px) 94vw, 680px" className={`ls-flower ${box}`} aria-hidden />
+          <Image src={logo} alt="" loading="eager" fill sizes="(max-width: 768px) 94vw, 680px" className={`ls-m ${box}`} aria-hidden />
           <Image
+            loading="eager"
             src={logo}
             alt="bLOOM Your Way 로고"
             fill
             sizes="(max-width: 768px) 94vw, 680px"
             className={`ls-tagline ${box}`}
+          />
+          {/* 로고가 완성되면 블룸이도 붉은 동백을 들어 올리며 피어남 (로고 위 빈자리) */}
+          <Image
+            loading="eager"
+            src="/images/bloom-2.png"
+            alt="붉은 동백꽃을 들어 올린 블룸이"
+            width={240}
+            height={240}
+            className="ls-bloom absolute top-[1%] right-[6%] w-[27%]"
           />
           {/* 마지막 안내: 로고 바로 아래 (로고 글자는 상자의 30%~68% 높이에 있음) */}
           <div className="ls-caption absolute inset-x-0 top-[71%] px-2 text-center">

@@ -92,6 +92,11 @@ body {
   opacity: var(--tagline);
   clip-path: inset(62% 0 0 0);
 }
+.ls-bloom {
+  opacity: var(--tagline);
+  transform: translateY(calc((1 - var(--tagline)) * 24px))
+    rotate(calc((1 - var(--tagline)) * -8deg));
+}
 .logo-story:not([data-done]) .ls-caption {
   pointer-events: none;
   visibility: hidden;

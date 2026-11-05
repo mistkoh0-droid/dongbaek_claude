@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, type FormEvent } from "react";
 import { GOODS } from "../_data/campaign";
 
@@ -45,7 +46,14 @@ export default function NotifyForm() {
         role="status"
         className="rounded-3xl border border-line bg-white p-8 text-center"
       >
-        <p className="text-sm font-bold tracking-widest text-pink">
+        <Image
+          src="/images/bloom-2.png"
+          alt="붉은 동백꽃을 들어 올린 블룸이"
+          width={140}
+          height={140}
+          className="mx-auto"
+        />
+        <p className="mt-2 text-sm font-bold tracking-widest text-pink">
           bLOOM YOUR WAY
         </p>
         <p className="mt-3 text-2xl font-bold">알림 신청이 저장됐어요</p>

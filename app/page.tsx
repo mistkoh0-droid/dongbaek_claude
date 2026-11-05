@@ -179,6 +179,26 @@ export default function Home() {
                     <p className="mt-3 text-lg leading-relaxed text-sub">
                       {s.line}
                     </p>
+                    {/* 장면을 지날수록 블룸이의 씨앗 파우치가 채워짐 */}
+                    <div className="mt-5 flex items-center gap-3">
+                      <span className="text-xs font-bold text-sub">
+                        블룸이의 씨앗 파우치
+                      </span>
+                      <span
+                        className="flex gap-1.5"
+                        role="img"
+                        aria-label={`씨앗 ${SCENES.length}개 중 ${i + 1}개`}
+                      >
+                        {SCENES.map((_, j) => (
+                          <span
+                            key={j}
+                            className={`size-3 rounded-full ${
+                              j <= i ? "bg-[#8a5a3b]" : "border border-line bg-white"
+                            }`}
+                          />
+                        ))}
+                      </span>
+                    </div>
                   </div>
                 </li>
               ))}
