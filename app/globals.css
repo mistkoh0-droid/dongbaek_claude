@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/* 동백마을 × A2O LITE 캠페인 색 (기존 콜라보 굿즈 페이지 기준) */
+@theme {
+  --color-ink: #18250d; /* 포레스트 먹색: 제목·본문 */
+  --color-sub: #4e5848; /* 보조 글자 */
+  --color-line: #dfe3da; /* 선·칸 */
+  --color-tile: #f4f6f1; /* 상품 사진 바탕 */
+  --color-ivory: #fbf8f1; /* 따뜻한 미색 바탕 */
+  --color-mint: #cfe8da; /* 배지 민트 (아주 연하게) */
+  --color-pink: #ff0176; /* 로고 핑크: 아주 적게 */
+  --font-sans: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic",
+    "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  word-break: keep-all;
+}
+
+/* ---------- 동백요정 → bLOOM 로고 (스크롤로 진행) ---------- */
+/* --p: 0 → 1 은 LogoStory 가 스크롤 위치로 넣어 줍니다. */
+.logo-story {
+  --p: 0;
+  height: 340vh;
+
+  --photo-out: clamp(0, calc((var(--p) - 0.12) / 0.16), 1);
+  --spirit-in: clamp(0, calc((var(--p) - 0.2) / 0.1), 1);
+  --move: clamp(0, calc((var(--p) - 0.34) / 0.24), 1);
+  --swap: clamp(0, calc((var(--p) - 0.58) / 0.08), 1);
+  --letters: clamp(0, calc((var(--p) - 0.66) / 0.12), 1);
+  --tagline: clamp(0, calc((var(--p) - 0.78) / 0.08), 1);
+  --caption: clamp(0, calc((var(--p) - 0.88) / 0.08), 1);
+  --text1: calc(1 - clamp(0, calc((var(--p) - 0.24) / 0.08), 1));
+  --text2: calc(
+    clamp(0, calc((var(--p) - 0.36) / 0.06), 1) -
+      clamp(0, calc((var(--p) - 0.58) / 0.06), 1)
+  );
+}
+
+.ls-photo {
+  opacity: calc(1 - var(--photo-out));
+}
+.ls-text1 {
+  opacity: var(--text1);
+}
+.ls-text2 {
+  opacity: var(--text2);
+}
+/* 요정의 꽃 중심(46.6%, 43.9%)이 로고 꽃 중심(46.7%, 48.6%)에 정확히 겹치도록 이동 */
+.ls-spirit {
+  transform-origin: 46.6% 43.9%;
+  opacity: calc(var(--spirit-in) * (1 - var(--swap)));
+  transform: translateY(calc(22% - var(--move) * 17.3%))
+    scale(calc(0.95 - var(--move) * 0.49));
+}
+.ls-flower {
+  opacity: var(--swap);
+  clip-path: polygon(
+    34.4% 30%,
+    70.6% 30%,
+    70.6% 62%,
+    40.5% 62%,
+    40.5% 57.5%,
+    34.4% 57.5%
+  );
+}
+.ls-bl {
+  opacity: var(--letters);
+  transform: translateX(calc((1 - var(--letters)) * -10%));
+  clip-path: polygon(
+    0% 30%,
+    34.4% 30%,
+    34.4% 57.5%,
+    40.5% 57.5%,
+    40.5% 62%,
+    0% 62%
+  );
+}
+.ls-m {
+  opacity: var(--letters);
+  transform: translateX(calc((1 - var(--letters)) * 10%));
+  clip-path: polygon(70.6% 30%, 100% 30%, 100% 62%, 70.6% 62%);
+}
+.ls-tagline {
+  opacity: var(--tagline);
+  clip-path: inset(62% 0 0 0);
+}
+.logo-story:not([data-done]) .ls-caption {
+  pointer-events: none;
+  visibility: hidden;
+}
+.ls-caption {
+  opacity: var(--caption);
+  transform: translateY(calc((1 - var(--caption)) * 16px));
+}
+
+/* 움직임을 줄이도록 설정한 사용자에게는 완성된 로고만 보여 줍니다. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .logo-story {
+    --p: 1 !important;
+    height: auto;
+  }
+  .logo-story .ls-stage {
+    position: relative;
+  }
+}
